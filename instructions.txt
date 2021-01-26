@@ -1,0 +1,21 @@
+Odoo 10 encrypted pass generator
+This code helps to change admin's password directly in the postgres database.
+Warning:
+This is a python 2.7 script
+Execute it and then goes to postgres -> psql, select database:
+
+\c databasename;
+
+then:
+
+UPDATE res_users SET password_crypt='hash', password=NULL WHERE id=1;
+
+and all it's done. You can now use your new password (password, not hash).
+The result will be written in pass.txt file.
+
+You can check your user with the following sql statement:
+
+SELECT login FROM res_users WHERE id=1;
+
+Warning:
+This script doesn't work with python 3
